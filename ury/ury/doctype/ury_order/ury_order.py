@@ -46,6 +46,12 @@ def get_order_invoice(table=None, invoiceNo=None, is_payment=None):
             invoice.naming_series = frappe.db.get_value(
                 "URY Restaurant", restaurant, "invoice_series_prefix"
             )
+            pos_profiles = frappe.get_all("POS Profile", filters={"owner": frappe.session.user}, fields=["name"])
+            if pos_profiles:
+                invoice.pos_profile = pos_profiles[0].name
+            else:
+                invoice.pos_profile = "Default POS Profile"
+
 
             invoice.is_pos = 1
             invoice.update_stock = 1

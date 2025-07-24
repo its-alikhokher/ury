@@ -742,6 +742,7 @@ frappe.ui.form.on('URY Order', {
 						table: frm.doc.restaurant_table,
 						items: frm.doc.items,
 						mode_of_payment: "Cash",
+						amount:frm.doc.grand_total,
 						customer: frm.doc.customer_name,
 						no_of_pax: frm.doc.no_of_pax,
 						waiter: frappe.session.user,
@@ -780,7 +781,7 @@ frappe.ui.form.on('URY Order', {
 					message: __("Select Items")
 				});
 			}
-		}
+			}
 		else {
 			frm.trigger('update_btn');
 			$('.standard-actions').removeClass('hidden-xs hidden-md');
@@ -1240,7 +1241,6 @@ frappe.ui.form.on('URY Order', {
 			method: 'ury.ury.doctype.ury_order.ury_order.cancel_order',
 			args: {
 				invoice_id: frm.doc.last_invoice,
-				reason: frm.cancel_reason
 			},
 			callback: function (r) {
 				frappe.show_alert({ message: __('Cancelled'), indicator: 'red' });
