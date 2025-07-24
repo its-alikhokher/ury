@@ -1217,10 +1217,12 @@ frappe.ui.form.on('URY Order', {
 											cancelFlag = true;
 											frm.reason = reason;
 											frm.cancel_reason = reason;
+											frm.doc.reason = reason;
 											frm.trigger('cancel');
 											dialog.hide();
 										}
 									},
+
 									primary_action_label: __('Cancel'),
 								});
 
@@ -1241,6 +1243,7 @@ frappe.ui.form.on('URY Order', {
 			method: 'ury.ury.doctype.ury_order.ury_order.cancel_order',
 			args: {
 				invoice_id: frm.doc.last_invoice,
+				reason: frm.cancel_reason
 			},
 			callback: function (r) {
 				frappe.show_alert({ message: __('Cancelled'), indicator: 'red' });

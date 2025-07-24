@@ -468,10 +468,16 @@ def cancel_order(invoice_id, reason):
         pass
 
     # Update invoice status
+    valid_fields = {"docstatus": 2}
+
+    meta = frappe.get_meta("URY Table")
+    if meta.has_field("cancel_reason"):
+        valid_fields["cancel_reason"] = reason
+
     frappe.db.set_value(
         "URY Table",
         pos_invoice.restaurant_table,
-        {"docstatus": 2, "status": "Cancelled", "cancel_reason": reason},
+        valid_fields
     )
    
 
