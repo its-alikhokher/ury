@@ -43,7 +43,9 @@ page_js = {"point-of-sale": ["public/js/pos_extend.js"]}
 # Splash Image in Website Settings
 website_context = {"splash_image": "/assets/ury/Images/ury-logo.jpg"}
 
-
+doctype_js = {
+    "BOM": "public/js/custom_bom.js"
+}
 # Home Pages
 # ----------
 
